@@ -1,0 +1,489 @@
+1.Нахождение суммы и произведения элементов массива.
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int num;
+  cin >> num;
+  int array[num];
+  for (int indexI = 0; indexI < num; ++indexI) {
+    cin >> array[indexI];
+  }
+  int summa = 0;
+  int product = 1;
+  for (int indexI = 0; indexI < num; ++indexI) { 
+    summa += array[indexI];
+    product *= array[indexI];
+  }
+  
+  cout << "summa   = " << summa << endl;
+  cout << "product = " << product << endl;
+  return 0;
+}  
+
+2. Нахождение максимального элемента массива.
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int num;
+  cin >> num;
+  int array[num];
+  for (int indexI = 0; indexI < num; ++indexI) {
+    cin >> array[indexI];
+  }
+  
+  int max = array[0];
+  for (int indexI = 0; indexI < num; ++indexI) { 
+    if (max < array[indexI]) {
+      max = array[indexI];
+    }
+  }
+  cout << max;
+  return 0;
+}
+
+3. Нахождение минимального 
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int num;
+  cin >> num;
+  int array[num];
+  for (int indexI = 0; indexI < num; ++indexI) {
+    cin >> array[indexI];
+  }
+  
+  int min = array[0];
+  for (int indexI = 0; indexI < num; ++indexI) { 
+    if (min > array[indexI]) {
+      min = array[indexI];
+    }
+  }
+  cout << min;
+  return 0;
+}   
+4. Найти максимальные и минимальный элемент матрицы и поменять их местами.
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+  int num;
+  cin >> num;
+  int mass[num][num];
+  for (int indexI = 0; indexI < num; ++indexI) {
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      cin >> mass[indexI][indexJ];
+    } 
+  }
+  
+  int min = mass[0][0];
+  int max = mass[0][0];
+  for (int indexI = 0; indexI < num; ++indexI) {
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      if (min > mass[indexI][indexJ]) {
+        min = mass[indexI][indexJ];
+      }
+      if (max < mass[indexI][indexJ]) {
+        max = mass[indexI][indexJ];
+      } 
+    }
+  }
+  
+  for (int indexI = 0; indexI < num; ++indexI) {
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      if (mass[indexI][indexJ] == max) {
+        mass[indexI][indexJ] = min;
+      } else if (mass[indexI][indexJ] == min){
+          mass[indexI][indexJ] = max;
+        }
+    }
+  }
+  cout << endl;
+  
+  for (int indexI = 0; indexI < num; ++indexI) {
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      cout << mass[indexI][indexJ] << " ";
+    }
+    cout << endl;
+  }
+  
+  return 0;
+}
+5. Сколько слов в тексте. 
+#include <iostream>
+#include <string>
+
+using namespace std;
+int main() {
+  string text;
+  int wordsAmount = 0;
+
+  getline(cin, text); 
+  
+  for (int letterIndex = 0; letterIndex < text.length(); ++letterIndex) {
+    if (text[letterIndex] == ' ') {
+      ++wordsAmount;
+    }
+  }
+  cout << wordsAmount + 1;
+}
+6.Транспонирование матрицы.
+#include <iostream>
+using namespace std;
+
+int main(){
+  int num;
+  cin >> num;
+  int massA[num][4], massB[4][num];
+  for (int indexI = 0; indexI < num; ++indexI){
+    for (int indexJ = 0; indexJ < 4; ++indexJ) {
+      cin >> massA[indexI][indexJ];
+    }
+  }
+  for (int indexI = 0; indexI < 4; ++indexI) {
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      massB[indexI][indexJ] = massA[indexJ][indexI];
+    }
+  }
+  cout << endl;
+  for (int indexI = 0; indexI < 4; ++indexI){
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      cout << massB[indexI][indexJ] << " ";
+    }
+    cout << endl;
+  }
+  return 0;
+}
+7. Поворот матрицы на 90 градусов по часовой стрелке.
+#include <iostream>
+using namespace std;
+
+int main(){
+  int num;
+  cin >> num;
+  int massA[num][4], massB[4][num];
+  for (int indexI = 0; indexI < num; ++indexI){
+    for (int indexJ = 0; indexJ < 4; ++indexJ) {
+      cin >> massA[indexI][indexJ];
+    }
+  }
+  for (int indexI = 0; indexI < 4; ++indexI) {
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      massB[indexI][indexJ] = massA[indexJ][4 - indexI - 1];
+    }
+  }
+  cout << endl;
+  for (int indexI = 0; indexI < 4; ++indexI){
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      cout << massB[indexI][indexJ] << " ";
+    }
+    cout << endl;
+  }
+  return 0;
+}
+8. Метод пузырька
+#include <iostream>
+using namespace std;
+
+int main(){
+  int num;
+  cin >> num;
+  int mass[num];
+  for (int indexI = 0; indexI < num; ++indexI){
+    cin >> mass[indexI];
+  }
+  for (int indexI = 0; indexI < num; ++indexI) {
+    for (int indexJ = 0; indexJ < num - 1; ++indexJ) {//чтобы проходить по всем элементам массима n раз.
+      if (mass[indexJ] > mass[indexJ + 1]) {
+        int temp = mass[indexJ];
+        mass[indexJ] = mass[indexJ + 1];
+        mass[indexJ + 1] = temp;
+      }
+    }
+  }
+  cout << endl;
+  for (int indexI = 0; indexI < num; ++indexI) {
+    cout << mass[indexI] << " ";
+  }
+  return 0;
+}
+9. 
+//////////
+///////
+10. Даны три положительных числа а, b, с. Проверить, могут ли они быть длинами сторон треугольника. Если да, то вычислить площадь этого треугольника.
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+  int a, b, c, halfP, square;
+  cin >> a >> b >> c;
+  
+  if (a <= b + c || b <= a + c || c <= a + b) {
+    halfP = (a + b + c) / 2;
+    square = sqrt(halfP * (halfP - a) * (halfP - b) * (halfP - c));
+    cout << square;
+  } else {
+      cout << "Не треугольник";
+    }
+  return 0;
+}
+
+11. Замена элементов на главной диагонали. Блок-схема, программа.
+
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+  int num;
+  cin >> num;
+  int mass[num][num];
+  for (int indexI = 0; indexI < num; ++indexI) {
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      cin >> mass[indexI][indexJ];
+    }
+  }
+  
+  for (int indexI = 0; indexI < num; ++indexI) {
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      if (indexI == indexJ){
+        mass[indexI][indexJ] = 0;
+      }
+    }
+  }
+  
+  for (int indexI = 0; indexI < num; ++indexI) {
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      cout << mass[indexI][indexJ] << " ";
+    }
+    cout << endl;
+  }
+  return 0;
+}
+
+12. Инверсия массива. Блок-схема, программа.
+
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+  int num;
+  cin >> num;
+  int mass[num];
+  for (int index = 0; index < num; ++index) {
+    cin >> mass[index];
+  }
+  for (int index = 0; index < num; ++index) {
+    cout << mass[num - index - 1] << " ";
+  }
+  return 0;
+}
+
+13.  Вычислить сумму чисел в каждой строке матрицы.
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+  int num;
+  cin >> num;
+  int array[num][num];
+  for (int indexI = 0; indexI < num; ++indexI) {
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      cin >> array[indexI][indexJ];
+    }
+  }
+  int  summa = 0;
+  for (int indexI = 0; indexI < num; ++indexI) { 
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      summa += array[indexI][indexJ];
+    }  
+    cout << "Sum of elements on " << num << " string = " << summa << endl;
+    summa = 0;
+  }
+  return 0;
+}
+
+14. Вычислить сумму отрицательных чисел в каждом столбце матрицы.
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+  int num;
+  cin >> num;
+  int mass[num][num];
+  for (int indexI = 0; indexI < num; ++indexI) {
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      cin >> mass[indexI][indexJ];
+    }
+  }
+  int  summa = 0;
+  for (int indexI = 0; indexI < num; ++indexI) { 
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      if (mass[indexJ][indexI] < 0) {
+        summa += mass[indexJ][indexI];
+      }
+    }  
+    cout << "Сумма элементов столбца = " << summa << endl;
+    summa = 0;
+  }
+  return 0;
+} 
+
+15.  Вычислить сумму чисел на главной и побочной диагоналях матрицы. 
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+  int num;
+  cin >> num;
+  int mass[num][num];
+  for (int indexI = 0; indexI < num; ++indexI) {
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      cin >> mass[indexI][indexJ];
+    }
+  }
+  int summaMain = 0;
+  for (int indexI = 0; indexI < num; ++indexI) { 
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      if (indexI == indexJ){
+        summaMain += mass[indexI][indexJ];
+      }
+    }
+  }
+  int summaSide = 0;
+  for (int indexI = 0; indexI < num; ++indexI){
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      if (indexI + indexJ == num - 1) {
+        summaSide += mass[indexI][indexJ];
+      }
+    }
+  }
+  cout << "Сумма главной диагонали  =  " << summaMain << endl;
+  cout << "Сумма побочной диагонали =  " << summaSide;
+  return 0;
+}  
+
+16. Вычислить среднее значение чисел в каждом столбце массива.
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+  int num;
+  cin >> num;
+  int mass[num][num];
+  for (int indexI = 0; indexI < num; ++indexI) {
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+      cin >> mass[indexI][indexJ];
+    }
+  }
+  int summa = 0;
+  int sredn = 0;
+  for (int indexI = 0; indexI < num; ++indexI) { 
+    for (int indexJ = 0; indexJ < num; ++indexJ) {
+        summa += mass[indexJ][indexI];
+        sredn = summa/num;
+    }  
+    cout << "среднее значение = " << sredn << endl;
+    summa = 0;
+    sredn = 0;
+  }
+  return 0;
+}    
+
+17. //////
+///////////
+
+18. Определить, является ли високосным год с таким номером.
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int year;
+  cout << "Enter the year: ";
+  cin >> year;
+  if((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+    cout << " Этот год является високосным";
+  } else { 
+    cout << " Этот год не является високосным";
+  }
+
+  return 0;
+}
+
+19.  Напишите программу, которая подсчитывает стоимость телеграммы, текст которой вводится с клавиатуры.
+СТОИМОСТЬ С ОДНОЙ БУКВЫ.
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+  string text;
+  int price, costTelegram;
+  getline(cin,text);
+  price = 2;
+  costTelegram = price * text.size();
+  cout<<"Стоимость телеграммы = "<< costTelegram << " Рублей";
+  
+  return 0;
+
+}
+Стоимость со словами. 
+#include <iostream>
+
+using namespace std;
+int main() {
+  string text;
+  int wordsAmount = 0;
+  int price = 2; 
+  int costTelegrama;
+  getline(cin, text); 
+  
+  for (int letterIndex = 0; letterIndex < text.size(); ++letterIndex) {
+    if (text[letterIndex] == ' ') {
+      wordsAmount += 1;
+    }
+  }
+  int words;
+  words =  wordsAmount + 1;
+  costTelegrama = price * words;
+  
+  cout << "Стоимость телеграммы: " << costTelegrama;
+  return 0;
+}
+
+20.  Заданы фамилия, имя и отчество учащегося, разделенные пробелами. Напишите программу, печатающую фамилию ученика и его инициалы.
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  cout << "Введите Фамилие, Имя и отчество: ";
+  string surname, name, patronymic;
+  cin >> surname >> name >> patronymic;
+  cout << surname << " " << name[0] << ". " << patronymic[0] << ".";
+  return 0;
+}
